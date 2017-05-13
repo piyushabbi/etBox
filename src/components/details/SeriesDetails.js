@@ -3,6 +3,8 @@ import { configObj } from '../../config/config';
 
 import './MovieDetailsStyles.scss';
 
+import ItemDetails from './ItemDetails';
+
 class SeriesDetails extends Component {
 
   constructor (props) {
@@ -30,7 +32,7 @@ class SeriesDetails extends Component {
 
   render () {
     console.log( this.state.details );
-    let style1 = {
+    let style = {
       backgroundImage: `url(http://image.tmdb.org/t/p/original/${this.state.details.backdrop_path})`
     };
     let detailsObj = this.state.details,
@@ -41,35 +43,13 @@ class SeriesDetails extends Component {
           (this.state.loading)
           ? <section className="container"><i>Loading</i></section>
           : (
-            <section className="movie-details-wrapper">
-              <div className="overlay-wrapper">           
-                <div className="movie-poster" style={ style1 }>
-                  <div className="movie-overlay"></div>
-                </div>
-               <div className="container movie-desc-wrapper">
-                  <div className="row">
-                    <div className="hidden-xs col-sm-4 col-md-3">
-                      <img className="img-responsive" src={ posterImg } alt={ detailsObj.title } />
-                    </div>
-                    <div className="col-sm-8 col-md-9">
-                      <div className="movie-desc">
-                        <h1>
-                          { detailsObj.title }
-                          <span>{ detailsObj.genres[0].name }</span>
-                        </h1>
-                        <h4>{ detailsObj.tagline }</h4>
-                        <ul className="genres">
-                          { 
-                            detailsObj.genres.map((m) => <li key={m.name} className="genresList">{m.name}</li>)
-                          }
-                        </ul>
-                        <p>{ detailsObj.overview }</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
+            <ItemDetails 
+              style={ style }
+              posterImg={ posterImg }
+              name={ detailsObj.original_name }
+              tagline={ detailsObj.tagline }
+              genres={ detailsObj.genres }
+              overview={ detailsObj.overview } />
           )
         }
       </div>
