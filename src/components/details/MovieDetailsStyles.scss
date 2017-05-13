@@ -1,0 +1,72 @@
+.movie-details-wrapper {
+  position: relative;
+  background-color: rgba(0,0,0,0.2);
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.71) 37%, rgba(0,0,0,0.6) 47%, rgba(0,0,0,0) 100%);
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.71) 37%,rgba(0,0,0,0.6) 47%,rgba(0,0,0,0) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.71) 37%,rgba(0,0,0,0.6) 47%,rgba(0,0,0,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5000000', endColorstr='#00000000',GradientType=0 );
+  min-height: calc(100vh - 39px);
+  .movie-poster {
+    background: 50% 15% no-repeat;
+    background-size: cover;
+    height: 340px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    @media (min-width: 768px) {
+      height: 400px;
+    }
+    .movie-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: -1;
+      background: rgba(28,31,36,.9);
+      background: linear-gradient(180deg, rgba(28, 31, 36, 0.25), rgba(28, 31, 36, 0.75) 67%, #1c1f24), linear-gradient(90deg, rgba(28, 31, 36, 0) 100%, rgba(28, 31, 36, 0.75) 98%, #1c1f24), linear-gradient(270deg, rgba(40, 255, 24, 0) 100%, rgba(28, 31, 36, 0.75) 100%, #1c1f24);
+      @media (min-width: 768px) {
+      background: linear-gradient(180deg, rgba(28, 31, 36, 0.25), rgba(28, 31, 36, 0.75) 69%, #1c1f24), linear-gradient(90deg, rgba(28, 31, 36, 0) 80%, rgba(28, 31, 36, 0.75) 94%, #1c1f24), linear-gradient(270deg, rgba(28, 31, 36, 0) 78%, rgba(28, 31, 36, 0.75) 96%, #1c1f24)
+      }
+    }
+  }
+  .movie-desc-wrapper {
+    padding-top: 50px;
+    .movie-desc {
+      padding-top: 165px;
+      @media (min-width: 768px) {
+        padding-top: 200px;
+      }
+      h1 {
+        font-weight: 600;
+        span {
+          display: inline-block;
+          vertical-align: middle;
+          margin-left: 20px;
+          background-color: #9b59b6;
+          padding: 5px 10px;
+          font-size: 14px;
+          color: #fff;
+        }
+      }
+      h4 {
+        color: #df691a;
+        font-weight: 600;
+      }
+      ul {
+        padding: 0;
+        li {
+          list-style: none;
+          display: inline-block;
+          margin-left: 10px;
+          font-weight: 600;
+          color: #27ae60;
+          text-transform: lowercase;
+          &:nth-of-type(1) {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import { configObj } from '../../config/config';
+import MovieCard from './MovieCard';
 
 class PopularSeries extends Component {
   constructor (props) {
@@ -36,16 +38,16 @@ class PopularSeries extends Component {
     let popularList = this.state.series.map( (m,i) => {
 
       const style = {
-        backgroundImage: `url(http://image.tmdb.org/t/p/w185/${m.poster_path})`
+        backgroundImage: `url(http://image.tmdb.org/t/p/w500/${m.poster_path})`
       };
 
       return (
-        <div key={ i } className="col-xs-6 col-sm-3 col-md-2 movie-card-wrap">
-          <div className="movie-card">
-            <div className="image-holder" style={ style }></div>
-            <p className="caption">{ m.original_name }</p>
-          </div>
-        </div>
+        <MovieCard 
+          key={ i } 
+          style={ style } 
+          title={ m.original_name } 
+          id={ m.id }
+          type='series' />
       );
     });
 

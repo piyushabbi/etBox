@@ -8,9 +8,10 @@ import NotFound from './components/notFound/NotFound';
 import Home from './components/home/HomePage';
 import HeaderNav from './components/headerNav/HeaderNav';
 import MovieDetails from './components/details/MovieDetails';
+import SeriesDetails from './components/details/SeriesDetails';
 
 /* CSS Files */
-import * as PopularMoviesStyles from './components/popular/PopularMovies.scss';
+import './components/popular/PopularMovies.scss';
 
 class App extends React.Component {
   render() { 
@@ -28,9 +29,10 @@ render(
   <Router history={ browserHistory }>
     <Route path="/" component={ App }>
       <IndexRoute component={ Home } />
-      <Route path="/popular" component={ Popular } />
-      <Route path="/movies" component={ Movies } />
-      <Route path="/popular/:id" component={ MovieDetails } />
+      <Route path="/movies" component={ Popular } />
+      <Route path="/series" component={ Movies } />
+      <Route path="/movies/:id" component={ MovieDetails } />
+      <Route path="/series/:id" component={ SeriesDetails } />
       <Route path="*" component={ NotFound } />
     </Route>
   </Router>, 

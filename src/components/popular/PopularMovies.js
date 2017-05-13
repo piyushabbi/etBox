@@ -15,14 +15,9 @@ class PopularMovies extends Component {
   componentDidMount () {
     const url = `${configObj.baseUrl}/movie/popular?page=1&language=en-US&api_key=${configObj.key}`;
 
-    var config = {
-      "async": true,
-      "crossDomain": true,
-      "url": url,
-      "method": "GET",
-      "headers": {},
-      "data": {}
-    }
+    const config = {
+      "url": url
+    };
     fetch(config.url).then(response => {
       Promise.resolve(response.json()).then(response => {
         console.log(response);
@@ -38,7 +33,7 @@ class PopularMovies extends Component {
     let popularList = this.state.movies.map( (m,i) => {
 
       const style = {
-        backgroundImage: `url(http://image.tmdb.org/t/p/w185/${m.poster_path})`
+        backgroundImage: `url(http://image.tmdb.org/t/p/w500/${m.poster_path})`
       };
 
       return (
@@ -46,7 +41,8 @@ class PopularMovies extends Component {
           key={ i } 
           style={ style } 
           title={ m.title } 
-          id={ m.id } />
+          id={ m.id }
+          type='movies' />
       );
     });
 

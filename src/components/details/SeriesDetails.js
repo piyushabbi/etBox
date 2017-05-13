@@ -3,7 +3,7 @@ import { configObj } from '../../config/config';
 
 import './MovieDetailsStyles.scss';
 
-class MovieDetails extends Component {
+class SeriesDetails extends Component {
 
   constructor (props) {
     super(props);
@@ -15,7 +15,7 @@ class MovieDetails extends Component {
 
   componentWillMount() {
     const config = {
-      "url": `https://api.themoviedb.org/3/movie/${this.props.params.id}?language=en-US&api_key=${configObj.key}`
+      "url": `https://api.themoviedb.org/3/tv/${this.props.params.id}?language=en-US&api_key=${configObj.key}`
     };
 
     fetch(config.url).then(response => {
@@ -77,4 +77,4 @@ class MovieDetails extends Component {
   }
 }
 
-export default MovieDetails;
+export default SeriesDetails;
