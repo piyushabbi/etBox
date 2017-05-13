@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 
-class Series extends Component {
+import PopularSeries from '../popular/PopularSeries';
+
+class Movies extends Component {
   render () {
     return (
-      <div className="container">
+      <div>
         <h1>Series Page</h1>
+        {/* Sort Section */}
+
+        {/* Movies Card Section */}
+        <PopularSeries />
+        {/* Pagination Section */}
       </div>
     );
   }
 }
 
-export default Series;
+export default Movies;

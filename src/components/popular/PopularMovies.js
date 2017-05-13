@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { configObj } from '../../config/config';
 import MovieCard from './MovieCard';
 
+/* CSS Files */
+import './PopularMovies.scss';
+
 class PopularMovies extends Component {
   constructor (props) {
     super(props);
@@ -47,11 +50,11 @@ class PopularMovies extends Component {
     });
 
     return (
-      <div>
+      <div className="container">
       { 
         this.state.loading 
-        ? <section className="container"><i>Loading</i></section>
-        : <section className="container">
+        ? <section><i>Loading</i></section>
+        : <section>
             <h2>Popular Movies</h2>
             <div className="row">
               { popularList }

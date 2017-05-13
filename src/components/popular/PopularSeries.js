@@ -52,11 +52,11 @@ class PopularSeries extends Component {
     });
 
     return (
-      <div>
+      <div className="container">
       { 
         this.state.loading 
-        ? <section className="container"><i>Loading</i></section>
-        : <section className="container">
+        ? <section><i>Loading</i></section>
+        : <section>
             <h2>Popular Series</h2>
             <div className="row">
               { popularList }

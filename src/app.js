@@ -11,16 +11,13 @@ import HeaderNav from './components/headerNav/HeaderNav';
 import MovieDetails from './components/details/MovieDetails';
 import SeriesDetails from './components/details/SeriesDetails';
 
-/* CSS Files */
-import './components/popular/PopularMovies.scss';
-
 class App extends React.Component {
   render() { 
     return (
-      <div>
+      <main>
         <HeaderNav />
         { this.props.children }
-      </div>
+      </main>
     );
   }
 };
@@ -37,4 +34,5 @@ render(
       <Route path="*" component={ NotFound } />
     </Route>
   </Router>, 
-  document.getElementById('root'));
+  document.getElementById('root')
+);
