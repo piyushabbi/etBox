@@ -1,0 +1,25 @@
+.movie-card-wrap {
+  margin-bottom: 15px;
+  .movie-card {
+    min-height: 250px;
+    width: 100%;
+    border: 1px solid;
+    border-radius: 4px;
+    overflow: hidden;
+    .caption {
+      font-size: 13px;
+      text-align: center;
+      height: 50px;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .image-holder {
+      height: 200px;
+      width: 100%;
+      background-size: 100% 100%;
+      background-repeat: no-repeat
+    }
+  }
+}
