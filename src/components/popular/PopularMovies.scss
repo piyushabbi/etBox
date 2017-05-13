@@ -1,5 +1,10 @@
 .movie-card-wrap {
   margin-bottom: 15px;
+  .card-link {
+    display: block;
+    text-decoration: none;
+    color: ivory;
+  }
   .movie-card {
     min-height: 250px;
     width: 100%;

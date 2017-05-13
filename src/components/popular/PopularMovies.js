@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import { configObj } from '../../config/config';
+import MovieCard from './MovieCard';
 
 class PopularMovies extends Component {
   constructor (props) {
@@ -40,12 +42,11 @@ class PopularMovies extends Component {
       };
 
       return (
-        <div key={ i } className="col-xs-6 col-sm-3 col-md-2 movie-card-wrap">
-          <div className="movie-card">
-            <div className="image-holder" style={ style }></div>
-            <p className="caption">{ m.title }</p>
-          </div>
-        </div>
+        <MovieCard 
+          key={ i } 
+          style={ style } 
+          title={ m.title } 
+          id={ m.id } />
       );
     });
 
@@ -53,7 +54,7 @@ class PopularMovies extends Component {
       <div>
       { 
         this.state.loading 
-        ? <i>Loading</i>
+        ? <section className="container"><i>Loading</i></section>
         : <section className="container">
             <h2>Popular Movies</h2>
             <div className="row">

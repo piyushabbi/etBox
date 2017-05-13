@@ -53,7 +53,7 @@ class PopularSeries extends Component {
       <div>
       { 
         this.state.loading 
-        ? <i>Loading</i>
+        ? <section className="container"><i>Loading</i></section>
         : <section className="container">
             <h2>Popular Series</h2>
             <div className="row">
