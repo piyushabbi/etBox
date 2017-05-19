@@ -2,6 +2,9 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
+import { Provider } from 'react-redux';
+import {configureStore} from './store/configureStore';
+
 import Popular from './components/popular/PopularMovies';
 import Movies from './components/movies/Movies';
 import Series from './components/series/Series';
@@ -22,17 +25,21 @@ class App extends React.Component {
   }
 };
 
+const store = configureStore(); 
+
 /* Render Root Component */
 render(
-  <Router history={ browserHistory }>
-    <Route path="/" component={ App }>
-      <IndexRoute component={ Home } />
-      <Route path="/movies" component={ Movies } />
-      <Route path="/series" component={ Series } />
-      <Route path="/movies/:id" component={ MovieDetails } />
-      <Route path="/series/:id" component={ SeriesDetails } />
-      <Route path="*" component={ NotFound } />
-    </Route>
-  </Router>, 
+  <Provider store={store}>
+    <Router history={ browserHistory }>
+      <Route path="/" component={ App }>
+        <IndexRoute component={ Home } />
+        <Route path="/movies" component={ Movies } />
+        <Route path="/series" component={ Series } />
+        <Route path="/movies/:id" component={ MovieDetails } />
+        <Route path="/series/:id" component={ SeriesDetails } />
+        <Route path="*" component={ NotFound } />
+      </Route>
+    </Router>
+  </Provider>, 
   document.getElementById('root')
 );

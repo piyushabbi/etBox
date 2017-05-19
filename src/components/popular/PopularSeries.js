@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 
 import { configObj } from '../../config/config';
 import MovieCard from './MovieCard';
@@ -68,4 +68,4 @@ class PopularSeries extends Component {
   }
 }
 
-export default PopularSeries;
+export default PopularSeries;*/

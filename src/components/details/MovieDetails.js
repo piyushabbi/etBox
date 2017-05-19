@@ -1,60 +1,76 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { configObj } from '../../config/config';
 
 import './MovieDetailsStyles.scss';
 
 import ItemDetails from './ItemDetails';
 
-class MovieDetails extends Component {
+import { fetchMovieDetailsData } from '../../actions/action-movie-detail';
+import { itemsIsLoading } from '../../actions/action-loading';
 
-  constructor (props) {
-    super(props);
-    this.state = {
-      details: {},
-      loading: true
-    }
+class MovieDetails extends Component {
+  componentWillMount() {
+    const url = `https://api.themoviedb.org/3/movie/${this.props.params.id}?language=en-US&api_key=${configObj.key}`;
+    console.log('CWM!');
+    console.log('Props from Did Mount', this.props)
+    this.props.fetchData(url);
   }
 
-  componentWillMount() {
-    const config = {
-      "url": `https://api.themoviedb.org/3/movie/${this.props.params.id}?language=en-US&api_key=${configObj.key}`
-    };
-
-    fetch(config.url).then(response => {
-      Promise.resolve(response.json()).then(response => {
-        this.setState({
-          details: response,
-          loading: false
-        });
-      })
-    });
+  mountData (props) {
+    let style = {
+        backgroundImage: `url(http://image.tmdb.org/t/p/original/${props.backdrop_path})`
+      }, 
+      detailsObj = props,
+      posterImg = `http://image.tmdb.org/t/p/w342/${detailsObj.poster_path}`;
+      <ItemDetails 
+        style={ style }
+        posterImg={ posterImg }
+        name={ detailsObj.title }
+        tagline={ detailsObj.tagline }
+        genres={ detailsObj.genres }
+        overview={ detailsObj.overview } />
   }
 
   render () {
-    console.log( this.state.details );
+    console.log('Movie Details Props ', this.props);
+    console.log('RENDER!');
+
+    if (this.props.isLoading) {
+      return <p>Loading…</p>;
+    }
+    
     let style = {
-      backgroundImage: `url(http://image.tmdb.org/t/p/original/${this.state.details.backdrop_path})`
-    };
-    let detailsObj = this.state.details,
-        posterImg = `http://image.tmdb.org/t/p/w342/${detailsObj.poster_path}`;  
+        backgroundImage: `url(http://image.tmdb.org/t/p/original/${this.props.movieDetails.backdrop_path})`
+      }, 
+      detailsObj = this.props.movieDetails,
+      posterImg = `http://image.tmdb.org/t/p/w342/${detailsObj.poster_path}`;
+    
     return (
-      <div>
-        {
-          (this.state.loading)
-          ? <section className="container"><i>Loading</i></section>
-          : (
-            <ItemDetails 
-              style={ style }
-              posterImg={ posterImg }
-              name={ detailsObj.title }
-              tagline={ detailsObj.tagline }
-              genres={ detailsObj.genres }
-              overview={ detailsObj.overview } />
-          )
-        }
-      </div>
+      <ItemDetails 
+        style={ style }
+        posterImg={ posterImg }
+        name={ detailsObj.title }
+        tagline={ detailsObj.tagline }
+        genres={ detailsObj.genres }
+        overview={ detailsObj.overview } />
     );
   }
 }
+  
 
-export default MovieDetails;
+
+const mapStateToProps = (state) => {
+  return {
+    movieDetails: state.movieDetails,
+    isLoading: state.itemsIsLoading
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchData: (url) => dispatch(fetchMovieDetailsData(url))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);

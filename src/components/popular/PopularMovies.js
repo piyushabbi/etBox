@@ -3,38 +3,30 @@ import React, { Component } from 'react';
 import { configObj } from '../../config/config';
 import MovieCard from './MovieCard';
 
+import { connect } from 'react-redux';
+
+import { popularMoviesFetchDataSuccess } from '../../actions/popular';
+import { fetchPopularMoviesData } from '../../actions/popular';
+import { itemsIsLoading } from '../../actions/action-loading';
+
 /* CSS Files */
 import './PopularMovies.scss';
 
 class PopularMovies extends Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      movies: [],
-      loading: true
-    }
-  }
 
-  componentDidMount () {
+  componentWillMount () {
     const url = `${configObj.baseUrl}/movie/popular?page=1&language=en-US&api_key=${configObj.key}`;
-
-    const config = {
-      "url": url
-    };
-    fetch(config.url).then(response => {
-      Promise.resolve(response.json()).then(response => {
-        console.log(response);
-        this.setState({
-          movies: response.results,
-          loading: false
-        });
-      })
-    });
+    this.props.fetchData(url);
   }
 
   render () {
-    let popularList = this.state.movies.map( (m,i) => {
+    console.log('Props ', this.props);
 
+    if (this.props.isLoading) {
+      return <p>Loading…</p>;
+    }
+    
+    let popularList = this.props.movies.map( (m,i) => {
       const style = {
         backgroundImage: `url(http://image.tmdb.org/t/p/w500/${m.poster_path})`
       };
@@ -51,19 +43,28 @@ class PopularMovies extends Component {
 
     return (
       <div className="container">
-      { 
-        this.state.loading 
-        ? <section><i>Loading</i></section>
-        : <section>
+        <section>
             <h2>Popular Movies</h2>
             <div className="row">
               { popularList }
             </div>
           </section>
-      }
       </div>
     );
   }
 }
 
-export default PopularMovies;
+const mapStateToProps = (state) => {
+  return {
+    movies: state.movies,
+    isLoading: state.itemsIsLoading
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchData: (url) => dispatch(fetchPopularMoviesData(url))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PopularMovies);

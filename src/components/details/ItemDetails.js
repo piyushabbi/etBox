@@ -1,6 +1,9 @@
 import React from 'react';
 
 const ItemDetails = (props) => {
+  if (props.genres===undefined) {
+    return false;
+  }
   return (
     <section className="movie-details-wrapper">
       <div className="overlay-wrapper">           
