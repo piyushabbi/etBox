@@ -15,7 +15,7 @@ class MovieDetails extends Component {
   componentWillMount() {
     const url = `https://api.themoviedb.org/3/movie/${this.props.params.id}?language=en-US&api_key=${configObj.key}`;
     console.log('CWM!');
-    console.log('Props from Did Mount', this.props)
+    console.log('Props from Will Mount', this.props)
     this.props.fetchData(url);
   }
 
@@ -25,13 +25,14 @@ class MovieDetails extends Component {
       }, 
       detailsObj = props,
       posterImg = `http://image.tmdb.org/t/p/w342/${detailsObj.poster_path}`;
-      <ItemDetails 
-        style={ style }
-        posterImg={ posterImg }
-        name={ detailsObj.title }
-        tagline={ detailsObj.tagline }
-        genres={ detailsObj.genres }
-        overview={ detailsObj.overview } />
+      
+    <ItemDetails 
+      style={ style }
+      posterImg={ posterImg }
+      name={ detailsObj.title }
+      tagline={ detailsObj.tagline }
+      genres={ detailsObj.genres }
+      overview={ detailsObj.overview } />
   }
 
   render () {

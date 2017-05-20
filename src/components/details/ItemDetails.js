@@ -2,6 +2,7 @@ import React from 'react';
 
 const ItemDetails = (props) => {
   if (props.name === undefined) {
+    console.log(props);
     return false;
   }
   return (

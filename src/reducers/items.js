@@ -41,3 +41,14 @@ export const series = (state=[], action) => {
       return state;
   }
 };
+
+// Reducer for fetching series details
+export const seriesDetails = (state={}, action) => {
+  switch (action.type) {
+    case 'SERIES_DETAILS_FETCH_DATA_SUCCESS': 
+      return Object.assign({}, ...state, action.seriesDetails);
+    
+    default:
+      return state;
+  }
+};
