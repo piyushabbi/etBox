@@ -2,6 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
+import './index.scss';
+
 import { Provider } from 'react-redux';
 import {configureStore} from './store/configureStore';
 

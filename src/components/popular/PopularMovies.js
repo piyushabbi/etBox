@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { configObj } from '../../config/config';
 import MovieCard from './MovieCard';
+import { LoadingSection } from '../Loading';
 
 import { connect } from 'react-redux';
 
@@ -23,7 +24,9 @@ class PopularMovies extends Component {
     console.log('Props Popular Movies', this.props);
 
     if (this.props.isLoading) {
-      return <div className="container"><p>Loading…</p></div>;
+      return (
+        <LoadingSection />
+      );
     }
     
     let popularList = this.props.movies.map( (m,i) => {

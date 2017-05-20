@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { configObj } from '../../config/config';
 
+import { LoadingSection } from '../Loading';
+
 import './MovieDetailsStyles.scss';
 
 import ItemDetails from './ItemDetails';
@@ -37,7 +39,7 @@ class MovieDetails extends Component {
     console.log('RENDER!');
 
     if (this.props.isLoading) {
-      return <p>Loading…</p>;
+      return <LoadingSection />;
     }
     
     let style = {
