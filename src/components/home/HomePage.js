@@ -9,6 +9,7 @@ class HomePage extends Component {
       <div>
         <PopularMovies />
         <hr />
+        <PopularSeries />
       </div>
     );
   }
