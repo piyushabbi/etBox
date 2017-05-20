@@ -1,42 +1,29 @@
-/*import React, { Component } from 'react';
+import React, { Component } from 'react';
 
 import { configObj } from '../../config/config';
 import MovieCard from './MovieCard';
 
+import { connect } from 'react-redux';
+
+import { popularSeriesFetchDataSuccess } from '../../actions/popular';
+import { fetchPopularSeriesData } from '../../actions/popular';
+import { itemsIsLoading } from '../../actions/action-loading';
+
 class PopularSeries extends Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      series: [],
-      loading: true
-    }
-  }
 
   componentDidMount () {
     const url = `${configObj.baseUrl}/tv/popular?page=1&language=en-US&api_key=${configObj.key}`;
-
-    var config = {
-      "async": true,
-      "crossDomain": true,
-      "url": url,
-      "method": "GET",
-      "headers": {},
-      "data": {}
-    }
-    fetch(config.url).then(response => {
-      Promise.resolve(response.json()).then(response => {
-        console.log(response);
-        this.setState({
-          series: response.results,
-          loading: false
-        });
-      })
-    });
+    this.props.fetchData(url);
   }
 
   render () {
-    let popularList = this.state.series.map( (m,i) => {
+    console.log('Props Popular Series', this.props);
 
+    if (this.props.isLoading) {
+      return <div className="container"><p>Loading…</p></div>;;
+    }
+
+    let popularList = this.props.series.map( (m,i) => {
       const style = {
         backgroundImage: `url(http://image.tmdb.org/t/p/w500/${m.poster_path})`
       };
@@ -52,20 +39,27 @@ class PopularSeries extends Component {
     });
 
     return (
-      <div className="container">
-      { 
-        this.state.loading 
-        ? <section><i>Loading</i></section>
-        : <section>
-            <h2>Popular Series</h2>
-            <div className="row">
-              { popularList }
-            </div>
-          </section>
-      }
-      </div>
+      <section className="container">
+        <h2>Popular Series</h2>
+        <div className="row">
+          { popularList }
+        </div>
+      </section>
     );
   }
 }
 
-export default PopularSeries;*/
+const mapStateToProps = (state) => {
+  return {
+    series: state.series,
+    isLoading: state.itemsIsLoading
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchData: (url) => dispatch(fetchPopularSeriesData(url))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PopularSeries);

@@ -12,9 +12,9 @@ export const movies = (state=[], action) => {
 // Reducer for fetching movie details
 export const movieDetails = (state={}, action) => {
   switch (action.type) {
-    case 'MOVIE_DETAILS_FETCH_DATA_SUCCESS': {
-      return action.movieDetails;
-    }
+    case 'MOVIE_DETAILS_FETCH_DATA_SUCCESS': 
+      return Object.assign({}, ...state, action.movieDetails);
+    
     default:
       return state;
   }
@@ -29,4 +29,15 @@ export function itemsIsLoading(state = false, action) {
     default:
       return state;
   }
-}
+};
+
+// Reducer for fetching popular series data
+export const series = (state=[], action) => {
+  switch (action.type) {
+    case 'POPULAR_SERIES_FETCH_SUCCESS': {
+      return action.series;
+    }
+    default:
+      return state;
+  }
+};

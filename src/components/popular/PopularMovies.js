@@ -20,10 +20,10 @@ class PopularMovies extends Component {
   }
 
   render () {
-    console.log('Props ', this.props);
+    console.log('Props Popular Movies', this.props);
 
     if (this.props.isLoading) {
-      return <p>Loading…</p>;
+      return <div className="container"><p>Loading…</p></div>;
     }
     
     let popularList = this.props.movies.map( (m,i) => {
@@ -42,14 +42,12 @@ class PopularMovies extends Component {
     });
 
     return (
-      <div className="container">
-        <section>
-            <h2>Popular Movies</h2>
-            <div className="row">
-              { popularList }
-            </div>
-          </section>
-      </div>
+      <section className="container">
+          <h2>Popular Movies</h2>
+          <div className="row">
+            { popularList }
+          </div>
+        </section>
     );
   }
 }

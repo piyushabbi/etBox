@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ItemDetails = (props) => {
-  if (props.genres===undefined) {
+  if (props.name === undefined) {
     return false;
   }
   return (
