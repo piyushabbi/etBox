@@ -24,9 +24,7 @@ class PopularMovies extends Component {
     console.log('Props Popular Movies', this.props);
 
     if (this.props.isLoading) {
-      return (
-        <LoadingSection />
-      );
+      return <LoadingSection />;
     }
     
     let popularList = this.props.movies.map( (m,i) => {
