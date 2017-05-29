@@ -16,17 +16,17 @@ import './PopularMovies.scss';
 class PopularMovies extends Component {
 
   componentWillMount () {
-    const url = `${configObj.baseUrl}/movie/popular?page=1&language=en-US&api_key=${configObj.key}`;
+    const url = `${configObj.baseUrl}/movie/popular?language=en-US&api_key=${configObj.key}&page=1`;
     this.props.fetchData(url);
   }
 
   render () {
     console.log('Props Popular Movies', this.props);
 
-    if (this.props.isLoading) {
-      return <LoadingSection />;
-    }
-    
+    /**
+     * This method will iterate over the list of movies,
+     * and returns markup for each movie card
+     */
     let popularList = this.props.movies.map( (m,i) => {
       const style = {
         backgroundImage: `url(http://image.tmdb.org/t/p/w500/${m.poster_path})`
@@ -41,6 +41,10 @@ class PopularMovies extends Component {
           type='movies' />
       );
     });
+
+    if (this.props.isLoading) {
+      return <LoadingSection />;
+    }
 
     return (
       <section className="container">
